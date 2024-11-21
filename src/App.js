@@ -7,10 +7,21 @@ function App() {
 	const [calc, setCalc] = useState("");
 	const [result, setResult] = useState("");
 
-	const ops = ['/','*','+.','-', '.'];
+	const ops = ['/','*','+','-', '.'];
 
+		//Arrow function 
 	const updateCalc = value => {
+		if (
+			ops.includes(value) && calc === ''||
+			ops.includes(value) && ops.includes(calc.slice(-1))
+		) {
+			return;
+		}
 		setCalc(calc + value);
+
+		if (!ops.includes(value)) {
+			setResult(eval(calc + value).toString());
+		}
 	}
 
 	
@@ -25,7 +36,7 @@ function App() {
 			each iteration of the loop. The element being added is a 
 			<button> component with a key and the digit as its content.*/
 			digits.push(
-				<button key={i}> {i} </button>
+				<button onClick = {()=> updateCalc(i.toString())} key={i}> {i} </button>
 			)
 		}
 		/*Returns the digits array, which now contains 
@@ -33,27 +44,33 @@ function App() {
 		return digits;
 	}
 
+	const calculate = () => {
+		setCalc(eval(calc).toString());
+
+	}
+
 
 	return (
 		<div className="App">
 			<div className="calculator">
 				<div className="display">
-					{result ? <span>(0)</span> : ''} 
+					{result ? <span>({result})</span> : ''}
 					{calc || "0"}
 				</div>
 				<div className="operators">
 					<button onClick = {()=> updateCalc('/')}>/</button>
-					<button>*</button>
-					<button>+</button>
-					<button>-</button>
+					<button onClick = {()=> updateCalc('*')}>*</button>
+					<button onClick = {()=> updateCalc('+')}>+</button>
+					<button onClick = {()=> updateCalc('-')}>-</button>
 					
 					<button>DEL</button>
 				</div>
 				<div className="digits">
 					{createDigits()  }
-					<button>0</button>
-					<button>.</button>
-					<button>=</button>
+					<button onClick = {()=> updateCalc('0')}>0</button>
+					<button onClick = {()=> updateCalc('.')}>.</button>
+
+					<button onClick= {calculate}>=</button>
 
 				</div>
 			</div>
