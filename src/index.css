@@ -76,7 +76,7 @@ button:hover {
 
 .operators button {
     flex: 1 1 0%;
-    background-color: var(--primary);
+    background-color: var(--secondary);
     font-weight: 800;
 }
 
