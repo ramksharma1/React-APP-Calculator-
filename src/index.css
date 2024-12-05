@@ -19,6 +19,11 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "fira Sans", sans-serif;
+    color: var(--dark);
+}
+.header {
+
+
 }
 
 body {
@@ -42,6 +47,7 @@ body {
     box-shadow: 0px 2px 64px rgba(0, 0, 0, 0.2);
 }
 
+/*get organized with steps */ 
 .display {
     padding: 16px;
     text-align: right;
@@ -53,7 +59,7 @@ body {
 
 .display span {
     font-size: 14px;
-    color: #888;
+    color: #e6dddd;
 }
 
 button {
